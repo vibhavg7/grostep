@@ -1,0 +1,16 @@
+page-payment-option {
+    .fixed-content{
+        background: #eee !important;
+    }
+    input[type="checkbox"] {
+        float: right;
+    }
+    .item-md .item-button {
+        padding: 0 1.1em;
+        height: 30px;
+        /* font-size: 1.2rem; */
+        background-color:#84c225 !important;
+        margin-right: 21px;
+    }
+}
+

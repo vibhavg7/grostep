@@ -1,0 +1,113 @@
+<ion-header>
+  
+    <ion-navbar>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon> 
+      </button>
+      <ion-title>
+            <span style="font-size:0.9em;text-align: center;justify-content: center;margin-left: 30px;
+            display:block;display: inline-block;width: 30px;height: 30px;padding-top:3px">
+            Add new address
+          </span>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content class="login-content" padding>
+    <div class="login-box">
+        
+      <form (ngSubmit)="addDelievryAddress()" [formGroup]="addAddressForm">
+          <!-- <div id="group1">
+              
+          </div> -->
+          <ion-list>
+            <ion-item no-lines>
+                <ion-row>
+                  <ion-col col-6>
+                      <input style=" width: 1.1em; height: 1.1em;" type="radio" value="0" 
+                      [formControl]="addAddressForm.controls['addresstype']"
+                      id="home" name="addresstype" checked [(ngModel)]="registerCredentials.addresstype">
+                      <label for="home"><i class="fa fa-home"></i>Home</label>
+                      <!-- <span><i class="fa fa-home"></i>Home</span> -->
+                  </ion-col>
+                  <ion-col col-6>
+                      <input style=" width: 1.1em; height: 1.1em;" type="radio" value="1" 
+                      [formControl]="addAddressForm.controls['addresstype']"
+                      name="addresstype" id="work" [(ngModel)]="registerCredentials.addresstype">
+                      <!-- <span><i class="fa fa-building"></i>Work</span> -->
+                      <label for="work"><i class="fa fa-building"></i>Work</label>
+                                        
+                  </ion-col>
+                </ion-row>
+                <div class="error" *ngIf="addAddressForm.controls['addresstype'].hasError('required') && addAddressForm.controls['addresstype'].touched">Please enter address type.</div>
+            </ion-item>
+              <!-- <ion-item no-lines>
+                 
+
+              </ion-item> -->
+                <ion-item>
+                  <ion-label floating>First Name</ion-label>
+                  <ion-input #myinput type="text" name="firstname" 
+                  [formControl]="addAddressForm.controls['firstname']"
+                  [(ngModel)]="registerCredentials.firstname"></ion-input>
+                </ion-item>
+                <div class="error" *ngIf="addAddressForm.controls['firstname'].hasError('required') && addAddressForm.controls['firstname'].touched">Please enter first name.</div>
+                <div class="error" *ngIf="addAddressForm.controls['firstname'].hasError('pattern') && addAddressForm.controls['firstname'].touched">Please enter valid first name.</div>
+                <ion-item>
+                  <ion-label floating>Last Name</ion-label>
+                  <ion-input type="text" name="lastname" [(ngModel)]="registerCredentials.lastname" 
+                  [formControl]="addAddressForm.controls['lastname']"></ion-input>
+                </ion-item>
+                <div class="error" *ngIf="addAddressForm.controls['lastname'].hasError('required') && addAddressForm.controls['lastname'].touched">Please enter last name.</div>
+                <div class="error" *ngIf="addAddressForm.controls['lastname'].hasError('pattern') && addAddressForm.controls['lastname'].touched">Please enter valid last name.</div>
+                <ion-item>
+                    <ion-label floating>Pincode</ion-label>
+                    <ion-input type="number" name="pincode" [(ngModel)]="registerCredentials.pincode" 
+                    [formControl]="addAddressForm.controls['pincode']"></ion-input>
+                </ion-item>
+                <div class="error" *ngIf="addAddressForm.controls['pincode'].hasError('required') && addAddressForm.controls['pincode'].touched">Please enter pincode.</div>
+                <div class="error" *ngIf="addAddressForm.controls['pincode'].hasError('pattern') && addAddressForm.controls['pincode'].touched">Please enter correct pincode.</div>                
+                <ion-item>
+                        <ion-label floating>House No./Building/Apartment</ion-label>
+                        <ion-input type="text" name="flatNumber" [(ngModel)]="registerCredentials.flatNumber" 
+                        [formControl]="addAddressForm.controls['flatNumber']"></ion-input>
+                </ion-item>
+                <div class="error" *ngIf="addAddressForm.controls['flatNumber'].hasError('required') && addAddressForm.controls['flatNumber'].touched">Please enter flat number.</div>                
+                <ion-item>
+                  <ion-label floating>Area/Locality/Sector</ion-label>
+                  <ion-input type="text" name="location" [(ngModel)]="registerCredentials.location" 
+                  [formControl]="addAddressForm.controls['location']"></ion-input>
+            </ion-item>
+            <div class="error" *ngIf="addAddressForm.controls['location'].hasError('required') && addAddressForm.controls['location'].touched">Please enter location.</div>
+            <div class="error" *ngIf="addAddressForm.controls['location'].hasError('pattern') && addAddressForm.controls['location'].touched">Please enter valid location.</div>
+                <ion-item>
+                    <ion-label floating>Address</ion-label>
+                    <ion-textarea type="text" name="address" [(ngModel)]="registerCredentials.address" autocomplete="on" autocorrect="on"
+                     [formControl]="addAddressForm.controls['address']"></ion-textarea>
+                </ion-item>
+                <div class="error" *ngIf="addAddressForm.controls['address'].hasError('required') && addAddressForm.controls['address'].touched">Please enter address.</div>
+                <ion-item>
+                    <ion-label floating>Phone Number</ion-label>
+                    <ion-input type="number" name="phone" [(ngModel)]="registerCredentials.phone" 
+                    [formControl]="addAddressForm.controls['phone']"></ion-input>
+                </ion-item>
+                <div class="error" *ngIf="addAddressForm.controls['phone'].hasError('required') && addAddressForm.controls['phone'].touched">Please enter phone number.</div>
+                <div class="error" *ngIf="addAddressForm.controls['phone'].hasError('pattern') && addAddressForm.controls['phone'].touched">Please enter correct phone number.</div>
+              </ion-list>
+
+       
+        <ion-row *ngIf="!updateAddressButton">
+          <ion-col class="signup-col">
+            <button class="deliveryaddressbutton" ion-button full type="submit" [disabled]="!addAddressForm.valid">ADD ADDRESS</button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="updateAddressButton">
+          <ion-col class="signup-col">
+            <button class="deliveryaddressbutton"  ion-button full type="submit" [disabled]="!addAddressForm.valid">UPDATE ADDRESS</button>
+          </ion-col>
+        </ion-row>
+        
+      </form>     
+    </div>
+  </ion-content>

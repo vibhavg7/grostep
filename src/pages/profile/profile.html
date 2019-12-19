@@ -1,0 +1,67 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>  
+    <!-- <ion-navbar>
+      <button ion-button icon-only menuToggle>   
+        <ion-icon name="menu"></ion-icon> 
+      </button>
+      <ion-title>
+        My Profile
+      </ion-title>
+    </ion-navbar> -->
+    <ion-toolbar>
+        <button ion-button  icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+              <span *ngIf="user?.name">
+                  {{user?.name | capitalizeFirst}}'s Account
+              </span>
+              <span *ngIf="!user?.name">
+                  My Account
+              </span>                
+        </ion-title>        
+    </ion-toolbar>
+  </ion-header>
+<ion-content padding >
+  <ion-card>
+    <ion-item text-wrap>      
+      <ion-avatar item-left>
+          <img onError="this.src='https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729';" src="{{user?.picture}}" alt="Image not shown"> 
+        <!-- <img src="https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729"> -->
+      </ion-avatar>
+      <h2 *ngIf="user?.name">{{user?.name | capitalizeFirst}}</h2>
+      <h2 *ngIf="user?.email">{{user?.email}}</h2>            
+      <h2 *ngIf="user?.location">{{user?.location | capitalizeFirst}}</h2>
+      <!-- <ion-icon name="log-out" (click)="logout()">Logout</ion-icon> -->
+    </ion-item>      
+  </ion-card>
+      <ion-list no-border>
+        <ion-item (click)="myOrder()">
+          <ion-icon name='basket' item-start></ion-icon>
+          My Order          
+        </ion-item>
+        <ion-item (click)="myCoupons()">
+          <!-- <ion-icon name='notifications' item-start></ion-icon> -->
+          <ion-icon name="albums" md="md-albums" item-start></ion-icon>          
+          My Coupons          
+        </ion-item>
+        <ion-item (click)="changePassword()">
+          <ion-icon name='lock' item-start></ion-icon>
+          Change Password          
+        </ion-item>
+        <ion-item  (click)="getAddress()">
+          <ion-icon name='locate' item-start></ion-icon>
+          My Saved Address          
+        </ion-item>
+        <!-- <ion-item  (click)="forgetPassword()">
+          <ion-icon name='locate' item-start></ion-icon>
+          Forget Password
+        </ion-item>
+         -->
+      </ion-list>
+</ion-content>

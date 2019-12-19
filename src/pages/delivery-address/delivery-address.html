@@ -1,0 +1,118 @@
+<ion-header>
+  
+    <ion-navbar>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon> 
+      </button>
+      <ion-title>
+          <!-- <img style="padding-top:5px" src="assets/imgs/header_logo.png"/>  -->
+       Choose Address
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding style="font-weight:bold;background-color:#f5f5f5 !important;height:100%">
+    <ion-card *ngIf="addressList?.length == 0">
+        <ion-card-header style="font-weight: bold;">
+            Delivery Address        
+        </ion-card-header>
+        <ion-list>   
+            <ion-item style="color:lightgrey;text-align: center;">
+                No Delivery Selected Added
+            </ion-item>                         
+            <ion-item>
+                <button ion-button style="color:black;background-color:#F8F8F8;border: 1px solid black " 
+                    icon-end block (click)="addDelievryAddress();">
+                        Add New Address
+                    <ion-icon name="add"></ion-icon>
+                </button>
+            </ion-item>            
+        </ion-list>               
+  </ion-card>
+
+               <ion-list *ngIf="addressList?.length > 0">
+                    <!-- <span>
+                            <span style="float:left">
+                                {{addressList?.length}} SAVED ADDRESS
+                            </span>
+                            <span style="float:right;color:#a9133d" (click)="addDelievryAddress();">
+                                    Add Address
+                            </span>
+                        </span> -->
+                <div *ngIf="addDelievryAddressLink">
+                        <button ion-button style="color:black;
+                        background-color:#F8F8F8;border: 1px solid black " 
+                            icon-end block (click)="chooseCurrentLocation();">
+                                Choose current location
+                            <ion-icon name="add"></ion-icon>
+                        </button>      
+                </div>        
+                
+
+                <div style="background-color: #fff;
+                width: 100%;
+                height: 40px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 10px;
+                margin-top: 15px;">
+                    <span style="float:left;width:50%">
+                        SAVED  ADDRESSES
+                    </span>
+                    <span style="float:right;color:green;width:50%" (click)="addDelievryAddress()">
+                        <ion-icon name="add"></ion-icon>
+                        ADD ADDRESS
+                    </span>
+                </div>
+                
+                <!-- <button class="deliveryaddressbutton" 
+                        ion-button icon-end block (click)="addDelievryAddress()">
+                        Add New Address
+                        <ion-icon name="arrow"></ion-icon>
+                </button>                   
+                 -->
+                </ion-list>
+                
+                <!-- #fce681 -->
+                <!-- [style.background]="item?.status == 1 ? '#f2ffe6':''" -->
+            <div style="margin-left: -9px;width: 296px;" *ngFor="let item of addressList" >
+               <ion-card>
+                  <ion-card-header>
+                      <span style="color:black">
+                        <input style=" width: 1.1em; height: 1.1em;" type="radio"
+                            name="status" [checked]="item.status == 1" (click)="addressSelected(item)">                         
+                        <span (click)="addressSelected(item)">
+                                {{item.firstname}} {{item.lastname}}
+                        </span>
+                            
+                        <ion-icon style="border-left: 1px solid black;float: right;
+                                padding-left: 10px;color:black !important" 
+                            name="trash" *ngIf="deleteiconvisible" (click)="deleteDeliveryAddress(item)">
+                        </ion-icon>
+
+                        <ion-icon style="padding-right:9px;float: right;color:black !important" 
+                            name="create" *ngIf="editiconvisible" (click)="editDeliveryAddress(item)">
+                        </ion-icon>
+
+                      </span>                      
+                  </ion-card-header>
+                  <ion-card-content  (click)="addressSelected(item)">
+                    <h5>Address: <b>{{item?.address}}</b></h5>
+                    <h5 style="padding-top:2px">Full Name: <b>{{item?.firstname}}{{item?.lastname}}</b></h5>
+                    <h5 style="padding-top:2px">
+                        Pincode: <b>{{item?.pincode}}</b>
+                        <span *ngIf="item?.addresstype == 0" style="float:right">
+                            <i class="fa fa-home" style="padding-right:2px"></i>
+                            Home
+                        </span>
+                        <span *ngIf="item?.addresstype == 1" style="float:right">
+                            <i class="fa fa-building" style="padding-right:2px"></i>
+                            Work
+                        </span>
+                    </h5>
+                  </ion-card-content>
+           
+            </ion-card>                                                       
+          </div> 
+</ion-content>

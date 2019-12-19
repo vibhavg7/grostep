@@ -1,0 +1,232 @@
+page-segment {
+
+    ion-segment-button.segment-button.segment-activated {
+        background: #eee!important;
+    }
+    .fixed-content{
+        background: #eee !important;
+    }
+
+    ion-segment-button{
+        //max-width: 25px;
+        border-style: solid;
+      }
+      
+      .segment-button {
+        border-style: none;
+        font-weight: bold !important;
+        background-color: white !important;
+        border-color: none !important;
+        color: #e62100;
+        margin-top: 8px !important;
+        // margin-bottom: 10px !important;
+        border-width: thick;
+        border-radius: 5px 5px 5px 5px;
+        // margin-right: 0px;
+        margin-left: 5px;
+        line-height: 1.4rem;
+        height: 100%;
+        width: 100%
+      }
+
+    //   .segment-button:first-of-type {
+    //     border-radius: 5px 5px 5px 5px;
+    //     // margin-right: 0px;
+    //     margin-left: 5px;
+    //     line-height: 3.4rem;
+    //     height: 100%;
+    //     width: 100%
+    //     }
+    //   .segment-button:not(:first-of-type) {
+    //     border-radius: 5px 5px 5px 5px;
+    //    // margin-right: 0px;
+    //     margin-left: 5px;
+    //     line-height: 3.4rem;
+    //     height: 100%;
+    //     width: 100%;}
+    //   .segment-button:last-of-type {
+    //     border-radius: 5px 5px 5px 5px;
+    //     margin-right: 0px;
+    //     margin-left: 5px;
+    //     line-height: 3.4rem;
+    //     height: 100%;
+    //     width: 100%;}
+      
+      
+       .segment-activated{
+        background-color: #e62100;
+        color: #ffffff;
+      }
+      
+    .swiper-slide {
+        overflow-y: scroll !important;
+        display: block !important;
+        }
+        
+        ion-segment {
+            display: block !important;
+            white-space: nowrap !important;
+            font-size: 0 !important;
+            overflow: auto !important;
+        
+            &::-webkit-scrollbar {
+                width: 0 !important;
+                height: 0 !important;
+                display: none !important;
+            }
+        
+            ion-segment-button.segment-button {
+                display: inline-block !important;
+                min-width: 100px !important;
+                width: auto !important;
+            }
+        }
+}
+// .swiper-slide {
+//     overflow-y: scroll !important;
+//     display: block !important;
+//     }
+    
+//     ion-segment {
+//         display: block !important;
+//         white-space: nowrap !important;
+//         font-size: 0 !important;
+//         overflow: auto !important;
+    
+//         &::-webkit-scrollbar {
+//             width: 0 !important;
+//             height: 0 !important;
+//             display: none !important;
+//         }
+    
+//         ion-segment-button.segment-button {
+//             display: inline-block !important;
+//             min-width: 100px !important;
+//             width: auto !important;
+//         }
+//     }
+ion-toast.bottomToast.toast-md {
+    .toast-wrapper.toast-bottom  {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 1;
+        display: block;
+        margin: auto;
+        width: 60%;
+        min-width: 250px;
+        max-width: 700px;
+        border-radius: 35px;
+        background-color: #383838;
+        color: #F0F0F0;
+        font-family: Calibri;    
+        padding: 3px 3px 3px 3px;
+        font-size: 17px;
+        /* color: #fff; */
+        text-align: center;    
+        bottom: 10px;
+         -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+        -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+        box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+        /* color: black; */
+    }
+
+
+    ion-app.md [padding] .scroll-content {
+        padding: 7px !important;
+    }
+    
+div#toast-hdr-0 {
+    text-align: center;
+}
+}
+
+.button.segment-activated {
+    //border-color: lightgreen !important;
+    opacity: 1 !important;
+}
+
+// .button.button-light.active, .button.button-light.activated ,.button.segment-activated{
+//     // color : $button-light-active-text
+//   }
+
+  ion-col.thumbWrap.col:after {
+    content: "";
+    position: absolute;
+    height: 75px;
+    right: 0;
+    width: 1px;
+    background: #eee;
+}
+
+ion-col.thumbWrap.col {
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.customgrid{
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px
+}
+
+ion-icon.icon.icon-md.ion-md-cart {
+    margin-right: 8px;
+}
+
+.segment-md .segment-button.activated, .segment-md .segment-button.segment-activated {
+    border-color: #8fc951;
+    opacity: 1;
+}
+
+
+.discount_logo
+{
+    border-radius: 50%;behavior: url(PIE.htc);
+    /* remove if you don't care about IE8 */width: 36px;
+    height: 36px;
+    padding: 5px 5px;background: #99c655;border: 2px solid;
+    text-align: center;vertical-align: top;float:left;
+    color:white;font: 10px Arial, sans-serif;position: absolute;
+    top: 6%;right: 6px;
+}
+
+.addressChange{
+    width:100% !important;
+    height: 13% !important;
+    // font-size: 0.8em;
+    text-align: center;
+    justify-content: center;
+    background-color: #FFF;
+    padding-top: 5px;
+}
+
+.inneraddressChange
+{
+    font-weight: bold;
+    display: block;
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+
+.cartlengthlogo
+{
+    font-size: 12px;
+    background: #6fa833;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    float: right;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -4px;
+    position: absolute;
+    right: 1px;
+}

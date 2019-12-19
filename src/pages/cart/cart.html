@@ -1,0 +1,149 @@
+<ion-header>
+        <ion-navbar>
+                <button ion-button icon-only menuToggle>
+                  <ion-icon name="menu"></ion-icon> 
+                </button>
+                <ion-title>
+                        <span style="font-size:0.9em;text-align: center;justify-content: center;margin-left: 45px;
+                                    display:block;display: inline-block;width: 30px;
+                                    height: 30px;padding-top:3px">
+                            Review Cart
+                        </span>     
+                        <ion-icon name="search" (click)="searchproducts()" style="float:right;padding-right:10px"></ion-icon>                   
+                </ion-title> 
+              </ion-navbar>
+        <!-- <ion-toolbar>
+                <button ion-button  icon-only menuToggle>
+                  <ion-icon name="menu"></ion-icon>
+                </button>
+                <ion-title>
+                        <span style="font-size:0.9em;text-align: center;justify-content: center;margin-left: 45px;
+                                    display:block;display: inline-block;width: 30px;
+                                    height: 30px;padding-top:3px">
+                            Review Cart
+                        </span>     
+                        <ion-icon name="search" (click)="searchproducts()" style="float:right;padding-right:10px"></ion-icon>                   
+                </ion-title>        
+            </ion-toolbar>       -->
+    </ion-header>
+
+
+    <ion-content>       
+        <div *ngIf="!cartList?.length" class="outer_empty_cart_wrap">        
+        <div class="innerCartWrap">
+            <ion-icon name="ios-cart-outline" style="zoom:4.0;"></ion-icon> 
+            <span style="color:#b61671">Your bag is empty!</span>
+        </div>
+            
+          
+        </div>
+        
+        <div *ngIf="!cartList?.length" class="outer_continue_shopping_button">
+               <button ion-button (click)="continueShopping()"
+               class="inner_continue_shopping_button">CONTINUE SHOPPING</button> 
+        </div>
+
+        <ion-list *ngIf="cartList?.length">            
+            
+                <ion-item-group *ngFor="let categories of cartCategories">
+                        <ion-item-divider  style="font-weight:bold;background-color:#f5f5f5 !important">
+                            <span>{{categories | capitalizeFirst }}</span>
+                        </ion-item-divider>
+                        <ion-item no-lines *ngFor="let item of cartList | filterCart:{main_category_name:categories}">
+                                <ion-thumbnail item-left>                                            
+                                        <img src="https://grostep.herokuapp.com/products/image/{{item?.product_img}}">                
+                                </ion-thumbnail>
+                                        <!-- <h2>
+                                            <span>
+                                                {{item?.title | capitalizeFirst}}                                            
+                                                <span *ngIf="item?.product_name_hindi">({{item?.product_name_hindi | capitalizeFirst}})</span>
+                                            </span>
+                                        </h2> -->
+                                        <div style="width:100%;display:flex;align-items:center;">
+                                            <div style="width:80%">
+                                                <span  *ngIf="item?.title">{{item?.title | capitalizeFirst}}</span>
+                                                <span style="display:block" *ngIf="item?.product_name_hindi">({{item?.product_name_hindi | capitalizeFirst}})</span>
+                                            </div>
+                                            <div style="float:right;width:20%;border-color:#8fc951 !important" (click)="removeItemFromCart(item)">
+                                                <i style=" display: inline-block;border-color:#8fc951 !important;top: 15px;
+                                                position: absolute;border: 1px solid;color:#8fc951;
+                                                    box-shadow: 0px 0px 2px #888;padding: 0.2em 0.3em;" class="fa fa-close">
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <p *ngIf="item?.combo == 0">
+                                                <span *ngIf="item?.weight % 1000 != 0">
+                                                        {{item?.weight % 1000}} {{item?.available_quantity_type}}
+                                                        <!-- {{item?.weight % 1000}} {{item?.available_quantity_type}} x {{item?.quantity}} -->
+                                                    </span>
+                                                    <span *ngIf="item?.weight % 1000 == 0">
+                                                            <!-- {{item?.weight / 1000}} kg x {{item?.quantity}} -->
+                                                            {{item?.weight / 1000}} kg
+                                                    </span>    
+                                            <!-- {{item?.weight}} {{item?.available_quantity_type}} x {{item?.quantity}} -->
+                                        </p>
+                                        <p *ngIf="item?.combo == 1">
+                                                Description : {{item?.combo_description}} 
+                                        </p>
+                                        <p *ngIf="item?.combo == 1">
+                                            Quantity : {{item?.quantity}}
+                                        </p>
+                                        <p style="font-weight:bold">Price : <i class="fa fa-rupee"></i>{{item?.price}} x {{item?.quantity}} 
+                                            = <i class="fa fa-rupee"></i>{{item?.price * item?.quantity| number : '1.2-2'}}</p>                
+                                        <p>
+                                        <!-- <p> -->
+                                        <div style="width:100%;display:flex;align-items:center;">
+                                            <button ion-button color="buttoncolor" outline icon-only item-right (click)="quantityMinus(item)">
+                                                    <ion-icon name='remove-circle' is-active="false"></ion-icon>
+                                            </button>         
+                                            <span style="padding-right: 10px;
+                                            padding-top: 15px;
+                                            padding-bottom: 15px;
+                                            padding-left: 2px;">{{item?.quantity}}</span>                               
+                                            <button ion-button color="buttoncolor" outline icon-only item-right (click)="quantityPlus(item)">
+                                                    <ion-icon name='add-circle' is-active="false"></ion-icon>
+                                            </button>
+                                            
+                                        </div>    
+                                        <hr/>
+                                        <!-- <button ion-button color="buttoncolor" outline icon-only item-right (click)="removeItemFromCart(item)">
+                                            <ion-icon name='trash' is-active="false"></ion-icon>
+                                        </button> -->
+                                        <!-- </p> -->
+                        </ion-item>                     
+                    </ion-item-group>
+
+                       
+         
+            </ion-list>               
+                <ion-list *ngIf="cartList?.length">
+                        <ion-item no-lines>
+                            <label>Amount To Pay</label>
+                            <span item-right><i class="fa fa-rupee"></i>{{getTotal()| number : '1.2-2'}}
+                            </span>
+                        </ion-item>
+                        <ion-item no-lines>
+                            <label>Shipping Charge</label>
+                            <span item-right><i class="fa fa-rupee"></i>{{getDeliveryCharge()| number : '1.2-2'}}
+                            </span>
+                        </ion-item>                      
+                        <ion-item no-lines>
+                            <label>Grand Total</label>
+                            <span item-right style="font-weight:bold"><i class="fa fa-rupee"></i>{{getPayableAmount()| number : '1.2-2'}}
+                            </span>
+                        </ion-item>                     
+                </ion-list>                                        
+            <div *ngIf="cartList?.length && getTotal() < 50" class="freedeliveryspancss">
+                <span>
+                    Shop for <i class="fa fa-rupee"></i> {{50 - getTotal()}} more to get delivery free
+                </span>
+            </div>            
+        </ion-content>            
+    <ion-footer class="footer_color" *ngIf="cartList?.length" 
+                (click)="checkout()">
+
+        <button clear style="color:#fff" ion-button icon-end block *ngIf="cartList?.length">
+            PROCEED TO CHECKOUT
+            <ion-icon name="arrow"></ion-icon>
+        </button>               
+    </ion-footer>

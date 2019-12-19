@@ -1,0 +1,130 @@
+<!--
+  Generated template for the MyordersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>My Orders</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="font-weight:bold;height:100%;background-color:#f5f5f5 !important">
+  
+    <div *ngIf="!ordersList?.length" class="outer_empty_cart_wrap">        
+        <div class="innerCartWrap">
+            <ion-icon name="ios-clock-outline" style="zoom:3.0;"></ion-icon> 
+            <span style="color:#b61671;display:block;">You haven't placed any orders yet.</span>
+        </div>
+            
+          
+        </div>
+        
+        <div *ngIf="!ordersList?.length" class="outer_continue_shopping_button">
+               <button ion-button (click)="startShopping()"
+               class="inner_continue_shopping_button">START SHOPPING</button> 
+        </div>
+
+  <div *ngFor="let item of ordersList" style="padding-bottom :10px;">
+      <div (click)="orderdetails(item)" style="border:1px grey;padding-bottom :10px; background:white">          
+              <ion-grid>
+                  <ion-row>
+                      <ion-col col-4 class="item-text-wrap" text-wrap>
+                        <strong> {{item?.placingdatetime| date : "EEE, dd-MM-y"}}</strong>
+                      </ion-col>
+                      <ion-col col-4>
+                          <span><i class="fa fa-rupee"></i>
+                            {{item?.payableAmount}}
+                          </span>
+                      </ion-col>                  
+                      <ion-col col-4>
+                        <span style="color:#b61671">View Details</span>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col col-4>
+                        <span style="color:#b61671">{{item?.delivery_date| date : "dd-MM-y"}}</span> 
+                        </ion-col>
+                      <ion-col col-4>
+                        <span *ngIf="item?.paid == 0">UnPaid</span>
+                        <span *ngIf="item?.paid == 1">Paid</span>
+                      </ion-col>
+                      <ion-col col-4>                          
+                          <span style="color:#99c655" *ngIf="item?.payment_mode == '0'"> Cash on Delivery</span>
+                          <span style="color:#99c655" *ngIf="item?.payment_mode == '1'"> Card On Delivery</span>
+                          <span style="color:#99c655" *ngIf="item?.payment_mode == '2'"> Paytm on Delivery</span>
+                          <span style="color:#99c655" *ngIf="item?.payment_mode == '3'"> Sodexo</span>
+                          <span style="color:#99c655" *ngIf="item?.payment_mode == '4'"> Online Payment</span>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row style="font-size:0.7em;color:#606060">
+                        <ion-col col-4>
+                          Delivery Date
+                        </ion-col>
+                        <ion-col col-4>
+                          Payment Status
+                        </ion-col>
+                        <ion-col col-4>
+                            Payment Mode
+                        </ion-col>
+                      </ion-row>
+                      <ion-row style="font-size:0.8em;text-align: center;display: flex;
+                      justify-content: center;">
+                        <span *ngIf="item?.status == 0">
+                            Order has been cancelled by Grostep
+                        </span>
+                        <span *ngIf="item?.status == 1">
+                            Order has been confirmed by Grostep 
+                        </span>                        
+                        <span *ngIf="item?.status == 2">
+                          Order has been ready for Shipping 
+                        </span>
+                        <span *ngIf="item?.status == 3">
+                          Order has been shipped by Grostep 
+                        </span>
+                        <span *ngIf="item?.status == 4">
+                          Order has been delivered successfully by Grostep 
+                        </span>
+                      </ion-row>
+                </ion-grid>  
+
+        </div> 
+            <!-- <span style="color:blue">
+              {{item?.placingdatetime| date:'fullDate'}} -->
+              <!-- <ion-icon style="float: right;color:black !important" 
+                  name="create" *ngIf="editiconvisible" (click)="editDeliveryAddress(item)">
+              </ion-icon>
+              <ion-icon style="float: right;padding-right: 10px;color:red !important" 
+                  name="trash" *ngIf="deleteiconvisible" (click)="deleteDeliveryAddress(item)">
+              </ion-icon> -->
+            <!-- </span>            -->
+        
+        <!-- <ion-card-content  (click)="orderSelected(item)">
+            <ion-grid>
+                <ion-row>
+                    <ion-col style="width:67% !important">
+                      <strong>{{item?.placingdatetime| date:'fullDate'}}</strong>
+                    </ion-col>                  
+                    <ion-col (click)="orderdetails()" style="width:33% !important">
+                      <strong>View Details</strong>
+                    </ion-col>
+                  </ion-row>
+              </ion-grid>
+          <h5> <b text-wrap>{{item?._id}}</b></h5>
+          <h5> 
+            <span style="font-weight:bold"><i class="fa fa-rupee"></i>
+              {{item?.payableAmount}}
+            </span>
+          </h5>
+          <h5> <b>{{item?.total_purchased_item}} Items</b></h5>
+        </ion-card-content>
+
+  </ion-card>                                                        -->
+  
+  </div>
+
+</ion-content>

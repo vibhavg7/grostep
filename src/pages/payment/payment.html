@@ -1,0 +1,57 @@
+<!--
+  Generated template for the PaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Payment Options</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list no-border>
+    <ion-item>
+      <p>Basket Value <i class="fa fa-rupee"></i>{{grandTotal| number : '1.2-2'}}</p>
+      <p>Delievery Charge <i class="fa fa-rupee"></i>{{deliveryCharge| number : '1.2-2'}}</p>      
+      <!-- <p *ngIf="voucherApplied">Voucher Applied <button (click)="removeVoucher()">Remove</button>-<i class="fa fa-rupee"></i>{{discountedValue| number : '1.2-2'}}</p> -->
+    </ion-item>
+    <!-- <ion-item *ngIf="!voucherApplied" (click)="voucherPage()">            
+      <button>Apply Voucher</button>
+      <ion-icon name="arrow-forward" end></ion-icon>
+    </ion-item> -->
+    <ion-item>      
+      <p>Total Saving <i class="fa fa-rupee"></i></p>
+      <p>Total Payable Amount <i class="fa fa-rupee"></i>{{payableAmount| number : '1.2-2'}}</p>
+      <!-- <p>Total Saving <i class="fa fa-rupee"></i>{{totalSaving}}</p> -->
+    </ion-item>
+    
+    <ion-item>
+      Payment Options
+    </ion-item>
+    <ion-list>
+      <div>
+        <button ion-button (click)="pay()">
+          Pay with Razorpay
+        </button>
+      </div>
+    </ion-list>
+  </ion-list>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+   
+    <button ion-button icon-end block (click)="placeOrder()">
+         PLACE ORDER
+        <ion-icon name="arrow"></ion-icon>
+    </button>
+    </ion-toolbar>
+</ion-footer>
+

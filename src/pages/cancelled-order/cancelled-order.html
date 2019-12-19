@@ -1,0 +1,30 @@
+<!--
+  Generated template for the CancelledOrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>It's Cancelled</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="font-weight:bold;">       
+    <div *ngIf="!cartList?.length" class="outer_empty_cart_wrap">        
+    <div class="innerCartWrap">
+        <ion-icon name="ios-cart-outline" style="zoom:4.0;"></ion-icon> 
+        <span style="color:#b61671">We've got your cancellation request</span>
+    </div>
+        
+      
+    </div>
+    
+    <div *ngIf="!cartList?.length" class="outer_continue_shopping_button">
+           <button ion-button (click)="continueShopping()"
+           class="inner_continue_shopping_button">CONTINUE SHOPPING</button> 
+    </div>
+</ion-content>

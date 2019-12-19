@@ -1,18 +1,51 @@
-<ion-header>
+<ion-header >
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon> 
+      </button>       
+      <ion-title>
+              <div>
+                  <span style="font-size:0.8em;text-align: center;justify-content: center;margin-left: 42px;float:left;display:block;display: inline-block;width: 30px;height: 30px;padding-top:3px">
+                          Grostep
+                  </span>                                                
+                  <span class="cartlengthlogo" (click)="viewCart()">
+                      {{cartList?.length}}
+                  </span>
+                  <span>
+                      <ion-icon  (click)="viewCart()" style="float:right;right: -10px;" name="cart"></ion-icon>
+                      <ion-icon name="search" (click)="searchproducts()" style="float:right;padding-right:10px"></ion-icon>
+                  </span>
+              </div>                        
+      </ion-title>
+    </ion-navbar>
+  
+  
 </ion-header>
-
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<!-- height:150px;width:290px;  -->
+<ion-content style="height:100% !important">
+  <div class="bannerdiv">
+    <ion-slides style="width:100% !important;" pager>
+        <ion-slide *ngFor="let banner of banners">
+            <div class="slide">
+                <img src="{{banner.image}}" style="width:100%;height:41%;
+                        margin-right:10px;"/>               
+            </div>
+        </ion-slide>        
+      </ion-slides>
+    
+  </div>
+  <div class="contenttextdiv" *ngIf="bannerLoader">
+        <span class="innermiddle">SHOP BY CATEGORY</span>
+  </div>
+  <div class="contentdiv">
+      <!-- <img src="assets/imgs/spinner.gif" [ngClass]="{'center':true}" *ngIf="!mainPageLoader"> -->
+      <div class="innerbannercontent" *ngFor="let category of categories" 
+        (click)="searchProductsByCategory(category)">
+        <div id="content_inner_div">
+            <img src="{{category?.image}}" (load)="dosomething()">
+            <ion-spinner [ngClass]="{'center':true}" *ngIf="!loaded"></ion-spinner>      
+          <span class="categoryname">{{category?.name | capitalizeFirst}}</span>
+        </div>
+      </div>
+  </div>  
 </ion-content>

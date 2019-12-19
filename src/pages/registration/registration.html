@@ -1,0 +1,76 @@
+<ion-header>
+    
+      <ion-navbar>
+        <button ion-button icon-only menuToggle>
+            <!-- <ion-title>Welcome </ion-title> -->
+          <ion-icon name="menu"></ion-icon> 
+        </button>
+        <ion-title>
+            <!-- <img style="padding-right:5px;padding-top:5px" src="assets/imgs/header_logo.png"/>  -->
+          Register
+        </ion-title>
+      </ion-navbar>
+    
+    </ion-header>
+  
+  
+  <ion-content class="login-content" padding>
+    <div class="login-box">
+      
+      <form [formGroup]="registrationForm" (ngSubmit)="register()">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+
+              <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input  type="text" name="name" [formControl]="registrationForm.controls['name']"
+                   [(ngModel)]="registerCredentials.name"></ion-input>
+              </ion-item>
+              <div class="error" *ngIf="registrationForm.controls['name'].hasError('required') && registrationForm.controls['name'].touched">Please enter name.</div>
+              <div class="error" *ngIf="registrationForm.controls['name'].hasError('pattern') && registrationForm.controls['name'].touched">Please enter valid name.</div>
+              <ion-item>
+                  <ion-label  floating>Email</ion-label>
+                  <ion-input type="text" name="email" [formControl]="registrationForm.controls['email']" 
+                    [(ngModel)]="registerCredentials.email"></ion-input>
+              </ion-item>
+              <div class="error" *ngIf="registrationForm.controls['email'].hasError('required') && registrationForm.controls['email'].touched">Please enter email address.</div>
+              <div class="error" *ngIf="registrationForm.controls['email'].hasError('pattern') && registrationForm.controls['email'].touched">Please enter correct email address.</div>              
+              
+              <ion-item>
+                  <ion-label floating>Phone</ion-label>
+                  <ion-input type="number" name="phoneNumber" [formControl]="registrationForm.controls['phoneNumber']" 
+                    [(ngModel)]="registerCredentials.phoneNumber"></ion-input>
+              </ion-item>
+              <div class="error" *ngIf="registrationForm.controls['phoneNumber'].hasError('required') && registrationForm.controls['phoneNumber'].touched">Please enter phone number.</div>
+              <!-- <div class="error" *ngIf="registrationForm.controls['phoneNumber'].hasError('minlength') && registrationForm.controls['phoneNumber'].touched" >Please enter correct phone number.</div>
+              <div class="error" *ngIf="registrationForm.controls['phoneNumber'].hasError('maxlength') && registrationForm.controls['phoneNumber'].touched">Please enter correct phone number.</div> -->
+              <div class="error" *ngIf="registrationForm.controls['phoneNumber'].hasError('pattern') && registrationForm.controls['phoneNumber'].touched">Please enter correct phone number.</div>
+              <ion-item>
+                  <ion-label floating>Location</ion-label>
+                  <ion-input type="text" name="location" [formControl]="registrationForm.controls['location']" 
+                    [(ngModel)]="registerCredentials.location"></ion-input>
+              </ion-item>
+              <div class="error" *ngIf="registrationForm.controls['location'].hasError('required') && registrationForm.controls['location'].touched">Please enter location.</div>
+              <div class="error" *ngIf="registrationForm.controls['location'].hasError('pattern') && registrationForm.controls['location'].touched">Please enter valid location.</div>  
+                <ion-item>
+                    <ion-label  floating>Password(Min 8 characters)</ion-label>
+                  <ion-input  type="password" name="password" [formControl]="registrationForm.controls['password']" 
+                    [(ngModel)]="registerCredentials.password"></ion-input>
+                </ion-item> 
+                <div class="error" *ngIf="registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched">Please enter password.</div>             
+                <div class="error" *ngIf="registrationForm.controls['password'].hasError('minlength') && registrationForm.controls['password'].touched">Minimum password length should be 8 characters.</div>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col class="signup-col">
+            <button class="signupbutton"  ion-button full type="submit" [disabled]="!registrationForm.valid">Register</button>
+          </ion-col>
+        </ion-row>
+        
+      </form>      
+       
+    </div>
+  </ion-content>
